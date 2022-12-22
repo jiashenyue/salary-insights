@@ -57,7 +57,7 @@ The heatmap showed that `Item_MSRP` has the best correlation with `Item_Outlet_S
 
 **Regression tree model**
 
-![plot](https://github.com/jiashenyue/salary-insights/blob/main/linear_regression.png)
+![plot](https://github.com/jiashenyue/salary-insights/blob/main/regression_tree.png)
 
 - Here is the model performance curve while fine-tuning the regression tree model
 - The model performance over testing data reached the peak at `model_depth = 5`
