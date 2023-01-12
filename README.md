@@ -30,44 +30,68 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 
 ## Results
 
-**Histogram of item sales by outlet type**
+**Does outlet location type affect the item sales amount?**
+
+**Hypothesis: Outlets in cities with a higher tier (i.e. Tier 1) will have a higher item sales amount due to the larger population (thus demand) and greater variety in the products for sale.**
+
+*Test hypothesis*
+
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/hist_outlet_type.png)
 
-- The histogram of item sales amount by outlet location type indicated the similar pattern: the median of item sales is similar across outlet location types.
+- The histogram of item sales may reject this hypothesis as there is no significant difference in the **median** of item sales across the three tiers of outlet location types.
 
-- In this comparison, Tier 3 outlets have a similar item sales pattern with Tier 1 outlets, but a lot more low item sales amount than Tier 2 outlets. This is different from the comparison between high, medium, and low outlet size.
+- In this comparison, Tier 3 outlets have a similar item sales pattern in terms of **median** and **distribution** with Tier 1 outlets, but a lot more low item sales amount than Tier 2 outlets. This partially agree with the hypothesis as **low** item sales amount is more common in **Tier 3** outlets than **Tier 1** outlets.
 
-**Histogram of item sales by outlet size**
+**Does **
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/hist_outlet_size.png)
 
 - The figure above indicated that regardless of outlet size, the medium of item sales is similar. Small outlets have more items with a low sales price.
 
 - The high outlets have a lot less number of item because of the total number of high outlets is much smaller in our data.
 
-**Correlation between item sales and item visibility**
+**Does item visibility affect the item sales amount?**
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/scatter_outlet_type.png)
 
-The scatterplot indicates that the `Item_Visibility` and `Item_Outlet_Sales` do not have any correlation if we do not distinguish between item types.
+**Hypothesis: Item visibility positively contributes to the item sales amount for the two reasons below:**
 
-**Correlation of numeric variables available in dataset**
+- To boost the profits, outlets tend to place the high price items at a highly visible place in the shelf, especially comparing with items of the same type with a lower price.
+- Even for items with a relatively low sales price, a higher shelf visibility usually means a greater likelihood of purchase, which again contributes to the positive correlation between **item visibility** and **item sales**.
+
+*Test Hypothesis*
+
+- The scatterplot indicates that the item visibility and item sales do not have any correlation if we do not distinguish between item types, which rejects the hypothesis between the positive correlation between item visibility and item outlet sales.
+
+**So, which variables are good candidates to predict the item sales in our dataset?**
+
+*Calculate correlation betwen 'item sales and all numeric variables*
 
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/corr.png)
 
-The heatmap showed that `Item_MSRP` has the best correlation with `Item_Outlet_Sales`.
+- The heatmap showed that **item MSRP** has the best correlation with item sales, indicating that the **item price for sale** is a more important factor to determine the **item sales** at outlets included in our dataset.
 
-**Regression tree model**
+**Predicting item sales with a regression tree model**
+
+- Based on our Explanatory Data Analysis, we can build a regression tree model with all numeric variables in our dataset to estimate the Item_Outlet_Sales
+- After fine-tuning our regression tree model, we find that using the **model_depth = 5** will yield a good prediction of item sales 
 
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/regression_tree.png)
 
 - Here is the model performance curve while fine-tuning the regression tree model
-- The model performance over testing data reached the peak at `model_depth = 5`
+- The model performance over testing data reached the peak at the **model_depth = 5**
 
 **Model comparison**
 
 - Comparing the regression tree model with a linear regression model, we find that the regression tree model performs much better than linear regression model over testing data.
-- This is our recommended model to estimate the `Item_Outlet_Sales`.
+- This is our recommended model to estimate the item sales.
 
-**Model** | **Training R^2** | **Testing R^2**  
----|--- | ---
-Linear Regression | 0.67 | -1.3788716713163139e+20
-Regression Tree | 0.605 | 0.596
+**TRAINING DATA**
+**Model** | **R^2** | **MAE** | **MSE** | **RMSE** 
+--- | --- | --- | --- | ---
+Linear Regression | 0.67 | 738.48 | 975000.00 | 987.42
+Regression Tree | 0.605 | 760.52 | 1168291.21 | 1080.88
+
+**TESTING DATA**
+**Model** | **R^2** | **MAE** | **MSE** | **RMSE** 
+--- | --- | --- | --- | ---
+Linear Regression | -1.38e+20 | 2.54e+12 | 3.86e+26 | 1.97e+13
+Regression Tree | 0.60 | 743.16 | 1130629.33 | 1063.31
