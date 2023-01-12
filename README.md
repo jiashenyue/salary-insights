@@ -28,9 +28,9 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 - We conducted exploratory analysis of dataset. Results can be reviewed from [this notebook](https://github.com/jiashenyue/salary-insights/blob/main/Data_Science_Sales_Insights_EDA.ipynb)
 - We then compared the performance of two machine learning models: **linear regression** and **regression trees**. Results can be found from [this link](https://github.com/jiashenyue/salary-insights/blob/main/machine_learning_sales.ipynb).
 
-## Results
+## Exploratory Data Analysis
 
-**1. Does outlet location type affect the item sales amount?**
+### 1. Does outlet location type affect the item sales amount?
 
 **Hypothesis: Outlets in cities with a higher tier (i.e. Tier 1) will have a higher item sales amount due to the larger population (thus demand) and greater variety in the products for sale.**
 
@@ -42,7 +42,7 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 
 - In this comparison, Tier 3 outlets have a similar item sales pattern in terms of **median** and **distribution** with Tier 1 outlets, but a lot more low item sales amount than Tier 2 outlets. This partially agree with the hypothesis as **low** item sales amount is more common in **Tier 3** outlets than **Tier 1** outlets.
 
-**2. Does outlet size affect the median item sales amount?**
+### 2. Does outlet size affect the median item sales amount?
 
 **Hypothesis: Outlets with a bigger size (i.e. Large) will have a median higher item sales amount due to the larger number of customers (thus demand) and greater variety of items available for sale, both may skew the median item sales to a higher level.**
 
@@ -54,7 +54,7 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 - The high outlets have a lot less number of item because of the total number of high outlets is much smaller in our data.
 - These findings reject our hypotehsis, indicating the outlet size does not significantly affect the median level of item sales amount, while it will define the **Total Amount** of item sales at an outlet.
 
-**3. Does item visibility affect the item sales amount?**
+### 3. Does item visibility affect the item sales amount?
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/scatter_outlet_type.png)
 
 **Hypothesis: Item visibility positively contributes to the item sales amount for the two reasons below:**
@@ -68,15 +68,17 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 
 **4. So, which variables are good candidates to predict the item sales in our dataset?**
 
-*Calculate correlation betwen 'item sales and all numeric variables*
+*Calculate correlation betwen item sales and all numeric variables*
 
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/corr.png)
 
 - The heatmap showed that **item MSRP** has the best correlation with item sales, indicating that the **item price for sale** is a more important factor to determine the **item sales** at outlets included in our dataset.
 
-**5. Predicting item sales with a regression tree model**
+## Modeling Results
 
-- Based on our Explanatory Data Analysis, we can build a regression tree model with all numeric variables in our dataset to estimate the Item_Outlet_Sales
+### 1. Predicting item sales with a regression tree model
+
+- Based on our Exploratory Data Analysis, we can build a regression tree model with all numeric variables in our dataset to estimate the Item_Outlet_Sales
 - After fine-tuning our regression tree model, we find that using the **model_depth = 5** will yield a good prediction of item sales 
 
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/regression_tree.png)
@@ -84,7 +86,7 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 - Here is the model performance curve while fine-tuning the regression tree model
 - The model performance over testing data reached the peak at the **model_depth = 5**
 
-**6. Model comparison**
+### 2. Model comparison
 
 - Comparing the regression tree model with a linear regression model, we find that the regression tree model performs much better than linear regression model over testing data.
 - This is our recommended model to estimate the item sales.
