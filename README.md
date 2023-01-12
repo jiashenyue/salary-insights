@@ -30,7 +30,7 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 
 ## Results
 
-**Does outlet location type affect the item sales amount?**
+**1. Does outlet location type affect the item sales amount?**
 
 **Hypothesis: Outlets in cities with a higher tier (i.e. Tier 1) will have a higher item sales amount due to the larger population (thus demand) and greater variety in the products for sale.**
 
@@ -42,14 +42,19 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 
 - In this comparison, Tier 3 outlets have a similar item sales pattern in terms of **median** and **distribution** with Tier 1 outlets, but a lot more low item sales amount than Tier 2 outlets. This partially agree with the hypothesis as **low** item sales amount is more common in **Tier 3** outlets than **Tier 1** outlets.
 
-**Does **
+**2. Does outlet size affect the item sales amount?**
+
+**Hypothesis: Outlets with a bigger size (i.e. Large) will have a higher item sales amount due to the larger number of customers (thus demand) and greater variety of items available for sale.**
+
+*Test hypothesis*
+
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/hist_outlet_size.png)
 
 - The figure above indicated that regardless of outlet size, the medium of item sales is similar. Small outlets have more items with a low sales price.
 
 - The high outlets have a lot less number of item because of the total number of high outlets is much smaller in our data.
 
-**Does item visibility affect the item sales amount?**
+**3. Does item visibility affect the item sales amount?**
 ![plot](https://github.com/jiashenyue/salary-insights/blob/main/scatter_outlet_type.png)
 
 **Hypothesis: Item visibility positively contributes to the item sales amount for the two reasons below:**
@@ -61,7 +66,7 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 
 - The scatterplot indicates that the item visibility and item sales do not have any correlation if we do not distinguish between item types, which rejects the hypothesis between the positive correlation between item visibility and item outlet sales.
 
-**So, which variables are good candidates to predict the item sales in our dataset?**
+**4. So, which variables are good candidates to predict the item sales in our dataset?**
 
 *Calculate correlation betwen 'item sales and all numeric variables*
 
@@ -79,18 +84,18 @@ Item_Outlet_Sales	| Sales of the product in the particular store. This is the ta
 - Here is the model performance curve while fine-tuning the regression tree model
 - The model performance over testing data reached the peak at the **model_depth = 5**
 
-**Model comparison**
+**5. Model comparison**
 
 - Comparing the regression tree model with a linear regression model, we find that the regression tree model performs much better than linear regression model over testing data.
 - This is our recommended model to estimate the item sales.
 
-**TRAINING DATA**
+**Training data**
 **Model** | **R^2** | **MAE** | **MSE** | **RMSE** 
 --- | --- | --- | --- | ---
 Linear Regression | 0.67 | 738.48 | 975000.00 | 987.42
 Regression Tree | 0.605 | 760.52 | 1168291.21 | 1080.88
 
-**TESTING DATA**
+**Testing data**
 **Model** | **R^2** | **MAE** | **MSE** | **RMSE** 
 --- | --- | --- | --- | ---
 Linear Regression | -1.38e+20 | 2.54e+12 | 3.86e+26 | 1.97e+13
